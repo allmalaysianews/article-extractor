@@ -20,8 +20,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import lxml.html
-from lxml.html import soupparser
+from lxml import etree
+from lxml import soupparser
 from lxml import etree
 from copy import deepcopy
 from goose.text import innerTrim
@@ -51,7 +51,7 @@ class Parser(object):
     @classmethod
     def fromstring(self, html):
         html = encodeValue(html)
-        self.doc = lxml.html.fromstring(html)
+        self.doc = etree.fromstring(html)
         return self.doc
 
     @classmethod
@@ -102,7 +102,7 @@ class Parser(object):
         # create the first text node
         # if we have some text in the node
         if root.text:
-            t = lxml.html.HtmlElement()
+            t = etree.HtmlElement()
             t.text = root.text
             t.tag = 'text'
             root.text = None
@@ -139,7 +139,7 @@ class Parser(object):
 
     @classmethod
     def createElement(self, tag='p', text=None, tail=None):
-        t = lxml.html.HtmlElement()
+        t = etree.HtmlElement()
         t.tag = tag
         t.text = text
         t.tail = tail
