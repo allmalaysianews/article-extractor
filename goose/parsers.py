@@ -20,7 +20,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-from lxml.html
+import lxml.html
 from lxml.html import soupparser
 from lxml import etree
 from copy import deepcopy
@@ -51,7 +51,7 @@ class Parser(object):
     @classmethod
     def fromstring(self, html):
         html = encodeValue(html)
-        self.doc = etree.fromstring(html)
+        self.doc = lxmlhtml.fromstring(html)
         return self.doc
 
     @classmethod
@@ -102,7 +102,7 @@ class Parser(object):
         # create the first text node
         # if we have some text in the node
         if root.text:
-            t = etree.HtmlElement()
+            t = lxmlhtml.HtmlElement()
             t.text = root.text
             t.tag = 'text'
             root.text = None
@@ -139,7 +139,7 @@ class Parser(object):
 
     @classmethod
     def createElement(self, tag='p', text=None, tail=None):
-        t = etree.HtmlElement()
+        t = lxmlhtml.HtmlElement()
         t.tag = tag
         t.text = text
         t.tail = tail
